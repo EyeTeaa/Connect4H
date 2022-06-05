@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    //test comment
     public void populateArrayOfCircles()
     {
         TextView textPlayerTurn = (TextView) findViewById(R.id.textPlayerTurn);
