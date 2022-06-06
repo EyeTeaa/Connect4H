@@ -512,6 +512,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="buttonCol1"
             android:text="^"
             tools:ignore="TouchTargetSizeCheck" />
 
@@ -520,6 +521,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="buttonCol2"
             android:text="^"
             tools:ignore="TouchTargetSizeCheck" />
 
@@ -528,6 +530,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="buttonCol3"
             android:text="^"
             tools:ignore="TouchTargetSizeCheck" />
 
@@ -536,6 +539,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="buttonCol4"
             android:text="^"
             tools:ignore="TouchTargetSizeCheck" />
 
@@ -544,6 +548,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="buttonCol5"
             android:text="^"
             tools:ignore="TouchTargetSizeCheck" />
 
@@ -552,6 +557,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="buttonCol6"
             android:text="^"
             tools:ignore="TouchTargetSizeCheck" />
 
@@ -560,6 +566,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="buttonCol7"
             android:text="^"
             tools:ignore="TouchTargetSizeCheck" />
 
