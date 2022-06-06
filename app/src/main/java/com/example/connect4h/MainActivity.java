@@ -20,9 +20,12 @@ public class MainActivity extends AppCompatActivity {
     //next free row indexes pertaining to the columns
     private int[] freeRowForColumn = {6,6,6,6,6,6,6};
 
-    //true == red player
-    //false == yellow player
-    private boolean currentPlayer = true;
+
+    //holds the drawable references for each color of the circles
+    private int playerOneChoice = R.drawable.redcircle;
+    private int playerTwoChoice = R.drawable.yellowcircle;
+    private int currentPlayerColor = R.drawable.graycircle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +37,15 @@ public class MainActivity extends AppCompatActivity {
     public void buttonCol1(View v)
     {
         column = 0 ;
+        //if statement to check if that column is full
+        if (freeRowForColumn[column] != 0 )
+        {
+            arrayOfCircleReferences[freeRowForColumn[column ]][column].setImageResource(R.drawable.redcircle);
+        }
+        else
+        {
 
+        }
         TextView textPlayerTurn = (TextView) findViewById(R.id.textPlayerTurn);
         textPlayerTurn.setText("The button has been clicked");
     }
@@ -99,6 +110,13 @@ public class MainActivity extends AppCompatActivity {
         arrayOfCircleReferences[0][5].setImageResource(R.drawable.yellowcircle);
 
     }
+
+    public int getCorrespondingColors(int b)
+    {
+        //if ()
+        return 0 ;
+    };
+
 
 //https://stackoverflow.com/questions/34027200/android-studio-mass-imageview-array
     //https://stackoverflow.com/questions/2974862/changing-imageview-source
