@@ -7,11 +7,17 @@ import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+
+    //variables that are used to pass info from one screen to another
+//    public static final String passingFirstName = "com.example.application.Connect4H.passingFirstName";
+//    public static final String passingSecondName = "com.example.application.Connect4H.passingSecondName";
 
     private ImageView[][] arrayOfCircleReferences = new ImageView[7][7];
     private dot[][] arrayOfDotProperties = new dot[7][7];
@@ -43,8 +49,10 @@ public class MainActivity extends AppCompatActivity {
         playerTwoName = intent.getStringExtra(HomeScreen.EXTRA_TEXT2);
 
         populateArrayOfCircleReferences();
+        onButtonEndGame();
     }
 
+    //all the lines down from here would be for the row of buttons
     public void buttonCol1(View v)
     {
         column = 0 ;
@@ -110,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //
+    //this will return the corresponding images for the correct player
     public int getCorrespondingDot()
     {
         if (currentPlayer)
@@ -123,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    //sets everything up for the next player
     public void nextPlayerTurn()
     {
         String firstPlayerText = playerOneName +  "'s Turn";
@@ -143,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //this would run when a column button has been clicked
     public void columnHasBeenClicked()
     {
         //if statement to check if that column is full
@@ -150,6 +160,8 @@ public class MainActivity extends AppCompatActivity {
         {
             arrayOfCircleReferences[freeRowForColumn[column ]][column].setImageResource(getCorrespondingDot());
             arrayOfDotProperties[freeRowForColumn[column]][column].setPopulated(currentPlayerColor);
+            checkColumnForFour();
+            checkRowForFour();
             freeRowForColumn[column] = freeRowForColumn[column] - 1 ;
             nextPlayerTurn();
         }
@@ -158,6 +170,83 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "That column is full", Toast.LENGTH_SHORT).show();
         }
     }
+
+    //would be called with each click and checks if there's four in a row
+    public void checkRowForFour()
+    {
+        int valueOfCircle = arrayOfDotProperties[freeRowForColumn[column]][0].getPopulated();
+        int valueInARow = 1;
+        for (dot v : arrayOfDotProperties[freeRowForColumn[column]])
+        {
+            if(valueOfCircle == v.getPopulated() && v.getPopulated() != 0)
+            {
+                valueInARow++;
+            }
+            else if (v.getPopulated()!=0)
+            {
+                valueOfCircle = v.getPopulated();
+                valueInARow = 1;
+            }
+            else
+            {
+                valueInARow = 0;
+            }
+            if (valueInARow == 4)
+            {
+                Toast.makeText(this, "this fuckery works"  + currentPlayer, Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    //called with each click ad checks if there's four in a column
+    public void checkColumnForFour()
+    {
+        int valueOfCircle = arrayOfDotProperties[6][column].getPopulated();
+        int valueInARow = 0;
+
+        for(int v = 6 ; v > -1 ; v-- )
+        {
+            if (arrayOfDotProperties[v][column].getPopulated() != 0)
+            {
+                if (arrayOfDotProperties[v][column].getPopulated() == valueOfCircle && arrayOfDotProperties[v][column].getPopulated() != 0)
+                {
+                    valueInARow++;
+                } else if (arrayOfDotProperties[v][column].getPopulated() != 0) {
+
+                    valueOfCircle = arrayOfDotProperties[v][column].getPopulated();
+                    valueInARow = 1;
+                } else
+                {
+                    valueInARow = 0;
+                }
+                if (valueInARow == 4)
+                {
+                    Toast.makeText(this, "the Column works" + currentPlayer, Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    }
+
+
+
+
+    private void onButtonEndGame()
+    {
+        Button nextButton = (Button) findViewById(R.id.buttonEndGame);
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                startActivity(new Intent(MainActivity.this, EndScreen.class));
+            }
+        });
+    }
+
+
+
+
+
+
 
 
 //https://stackoverflow.com/questions/34027200/android-studio-mass-imageview-array

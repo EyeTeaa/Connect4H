@@ -9,8 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class HomeScreen extends AppCompatActivity {
-    public static final String EXTRA_TEXT = "com.example.application.example.EXTRA_TEXT";
-    public static final String EXTRA_TEXT2 = "com.example.application.example.EXTRA_TEXT2";
+
+    //variables that are used to pass information from this screen to game screen
+    public static final String EXTRA_TEXT = "com.example.application.Connect4H.EXTRA_TEXT";
+    public static final String EXTRA_TEXT2 = "com.example.application.Connect4H.EXTRA_TEXT2";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
