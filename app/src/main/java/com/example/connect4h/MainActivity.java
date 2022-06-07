@@ -3,6 +3,7 @@ package com.example.connect4h;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
@@ -22,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
     private int[] freeRowForColumn = {6,6,6,6,6,6,6};
 
 
+    // -- all the player relevant variables
+    private String playerOneName = "" ;
+    private String playerTwoName = "" ;
     //holds the drawable references for each color of the circles
     private int playerOneChoice = R.drawable.redcircle;
     private int playerTwoChoice = R.drawable.yellowcircle;
@@ -34,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent intent = getIntent();
+        playerOneName = intent.getStringExtra(HomeScreen.EXTRA_TEXT);
+        playerTwoName = intent.getStringExtra(HomeScreen.EXTRA_TEXT2);
+
         populateArrayOfCircleReferences();
     }
 
@@ -85,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
     public void populateArrayOfCircleReferences()
     {
         TextView textPlayerTurn = (TextView) findViewById(R.id.textPlayerTurn);
-        textPlayerTurn.setText("Player 1's Turn");
+        textPlayerTurn.setText( playerOneName + "'s Turn");
         int index = 1 ;
         for(int v = 0 ; v < 7 ; v ++ )
         {
@@ -117,8 +125,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void nextPlayerTurn()
     {
-        String firstPlayerText = "Player 1's Turn";
-        String secondPlayerText = "Player 2's Turn";
+        String firstPlayerText = playerOneName +  "'s Turn";
+        String secondPlayerText = playerTwoName + "'s Turn";
         currentPlayer = !currentPlayer;
         if (currentPlayer)
         {
