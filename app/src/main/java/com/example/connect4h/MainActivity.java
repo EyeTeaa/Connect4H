@@ -193,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
             }
             if (valueInARow == 4)
             {
-                Toast.makeText(this, "this fuckery works"  + currentPlayer, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "this row is full"  + currentPlayer, Toast.LENGTH_SHORT).show();
             }
         }
     }
