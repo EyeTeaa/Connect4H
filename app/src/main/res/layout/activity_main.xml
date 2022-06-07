@@ -5,6 +5,7 @@
     android:id="@+id/linearLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:onClick="buttonCol3"
     android:orientation="vertical"
     android:textAlignment="textEnd"
     android:textDirection="firstStrong"
@@ -19,7 +20,7 @@
             android:layout_width="233dp"
             android:layout_height="42dp"
             android:gravity="center"
-            android:text="Red Player's Turn"
+            android:text="Player 1's Turn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -512,6 +513,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="buttonCol1"
             android:text="^"
             tools:ignore="TouchTargetSizeCheck" />
 
@@ -520,6 +522,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="buttonCol2"
             android:text="^"
             tools:ignore="TouchTargetSizeCheck" />
 
@@ -528,6 +531,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="buttonCol3"
             android:text="^"
             tools:ignore="TouchTargetSizeCheck" />
 
@@ -536,6 +540,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="buttonCol4"
             android:text="^"
             tools:ignore="TouchTargetSizeCheck" />
 
@@ -544,6 +549,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="buttonCol5"
             android:text="^"
             tools:ignore="TouchTargetSizeCheck" />
 
@@ -552,6 +558,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="buttonCol6"
             android:text="^"
             tools:ignore="TouchTargetSizeCheck" />
 
@@ -560,6 +567,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="buttonCol7"
             android:text="^"
             tools:ignore="TouchTargetSizeCheck" />
 

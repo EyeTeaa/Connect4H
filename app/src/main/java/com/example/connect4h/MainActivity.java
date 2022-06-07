@@ -8,43 +8,149 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageView[][] arrayOfCircles = new ImageView[7][7];
+    private ImageView[][] arrayOfCircleReferences = new ImageView[7][7];
+    private dot[][] arrayOfDotProperties = new dot[7][7];
+
+    //the column in which the user selected
+    private int column = 0 ;
+
+    //next free row indexes pertaining to the columns
+    private int[] freeRowForColumn = {6,6,6,6,6,6,6};
+
+
+    //holds the drawable references for each color of the circles
+    private int playerOneChoice = R.drawable.redcircle;
+    private int playerTwoChoice = R.drawable.yellowcircle;
+    //handles the current stuff
+    private boolean currentPlayer = true; //true = playerOne // false = playerTwo
+    private int currentPlayerColor = R.drawable.graycircle;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        populateArrayOfCircles();
+        populateArrayOfCircleReferences();
     }
 
+    public void buttonCol1(View v)
+    {
+        column = 0 ;
+        columnHasBeenClicked();
+    }
 
-    //test
-    public void populateArrayOfCircles()
+    public void buttonCol2(View view)
+    {
+        column = 1  ;
+        columnHasBeenClicked();
+    }
+
+    public void buttonCol3(View view )
+    {
+        column = 2 ;
+        columnHasBeenClicked();
+    }
+
+    public void buttonCol4(View view )
+    {
+        column = 3 ;
+        columnHasBeenClicked();
+    }
+
+    public void buttonCol5(View view )
+    {
+        column = 4 ;
+        columnHasBeenClicked();
+    }
+
+    public void buttonCol6(View view )
+    {
+        column = 5 ;
+        columnHasBeenClicked();
+    }
+
+    public void buttonCol7(View view )
+    {
+        column = 6 ;
+        columnHasBeenClicked();
+    }
+
+    /* populates both of the 2D arrays
+    arrayOfDotProperties and arrayOfCircleReferences
+    */
+    public void populateArrayOfCircleReferences()
     {
         TextView textPlayerTurn = (TextView) findViewById(R.id.textPlayerTurn);
-        textPlayerTurn.setText("Red Player's Turn:");
-        //for (int i = 0; i < 26; i++) { //You might have to change that slightly depending on where you want to start/end counting
-        //    int res = getResources().getIdentifier("i"+i, "id", getPackageName()); //This line is necessary to "convert" a string (e.g. "i1", "i2" etc.) to a resource ID
-        //    letters[i] = (ImageView) findViewById(res);
-        //    //setOnclicklistener for letters[i] and whatever you would like to do.
-        //}
+        textPlayerTurn.setText("Player 1's Turn");
         int index = 1 ;
         for(int v = 0 ; v < 7 ; v ++ )
         {
             for (int n = 0; n < 7; n++)
             {
+                dot newDot = new dot(0);
+                arrayOfDotProperties[v][n] = newDot;
                 int res = getResources().getIdentifier("dot" + index, "id", getPackageName());
-                arrayOfCircles[v][n] = (ImageView) findViewById(res);
-                arrayOfCircles[v][n].setImageResource(R.drawable.graycircle);
+                arrayOfCircleReferences[v][n] = (ImageView) findViewById(res);
+                arrayOfCircleReferences[v][n].setImageResource(R.drawable.graycircle);
                 index++;
             }
         }
 
     }
+
+    //
+    public int getCorrespondingDot()
+    {
+        if (currentPlayer)
+        {
+            return playerOneChoice;
+        }
+        else
+        {
+            return playerTwoChoice;
+        }
+    };
+
+    public void nextPlayerTurn()
+    {
+        String firstPlayerText = "Player 1's Turn";
+        String secondPlayerText = "Player 2's Turn";
+        currentPlayer = !currentPlayer;
+        if (currentPlayer)
+        {
+            TextView textPlayerTurn = (TextView) findViewById(R.id.textPlayerTurn);
+            textPlayerTurn.setText(firstPlayerText);
+            currentPlayerColor = playerOneChoice;
+        }
+        else
+        {
+            TextView textPlayerTurn = (TextView) findViewById(R.id.textPlayerTurn);
+            textPlayerTurn.setText(secondPlayerText);
+            currentPlayerColor = playerTwoChoice;
+        }
+
+    }
+
+    public void columnHasBeenClicked()
+    {
+        //if statement to check if that column is full
+        if (freeRowForColumn[column] != -1 )
+        {
+            arrayOfCircleReferences[freeRowForColumn[column ]][column].setImageResource(getCorrespondingDot());
+            arrayOfDotProperties[freeRowForColumn[column]][column].setPopulated(currentPlayerColor);
+            freeRowForColumn[column] = freeRowForColumn[column] - 1 ;
+            nextPlayerTurn();
+        }
+        else
+        {
+            Toast.makeText(this, "That column is full", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
 //https://stackoverflow.com/questions/34027200/android-studio-mass-imageview-array
     //https://stackoverflow.com/questions/2974862/changing-imageview-source
